@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_nilai"
+        android:icon="@drawable/ic_home_black_24dp"
+        android:title="Nilai" />
+
+    <item
+        android:id="@+id/nav_presensi"
+        android:icon="@drawable/ic_dashboard_black_24dp"
+        android:title="Presensi" />
+
+    <item
+        android:id="@+id/nav_guru"
+        android:icon="@drawable/ic_notifications_black_24dp"
+        android:title="Daftar guru" />
+
+    <item
+        android:id="@+id/nav_profil"
+        android:icon="@drawable/ic_notifications_black_24dp"
+        android:title="Profil" />
+
+</menu>

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.login.LoginActivity">
+    tools:context=".ui.register.RegisterActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,21 +16,77 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Login"
+            android:text="Register"
             android:textSize="24sp"
             android:textStyle="bold"
             android:textColor="@color/colorPrimary"
-            android:layout_marginTop="60dp"/>
+            android:layout_marginTop="40dp"/>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/nameLay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="nama"
+                android:textSize="14sp"/>
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/nisLay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:passwordToggleEnabled="true"
+            android:layout_marginTop="20dp"
+            android:focusable="false">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/nis"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="nis"
+                android:textSize="14sp"/>
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/addressLay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="alamat"
+                android:textSize="14sp"/>
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/phoneLay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="telepon"
+                android:textSize="14sp"/>
+        </android.support.design.widget.TextInputLayout>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Masuk sebagai :"
+            android:text="jenis kelamin"
             android:textSize="14sp"
-            android:textStyle="bold"
             android:textColor="@color/black"
-            android:layout_marginTop="60dp"
-            android:layout_marginBottom="10dp"/>
+            android:layout_marginTop="20dp" />
 
         <RadioGroup
             android:id="@+id/rgMasuk"
@@ -42,7 +98,7 @@
                 android:id="@+id/rbWali"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Wali murid"
+                android:text="laki-laki"
                 android:textSize="14sp"
                 android:layout_marginEnd="20dp"
                 android:checked="true"/>
@@ -51,7 +107,7 @@
                 android:id="@+id/rbGuru"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Guru"
+                android:text="perempuan"
                 android:textSize="14sp"
                 android:checked="false"/>
         </RadioGroup>
@@ -74,7 +130,6 @@
             android:id="@+id/passLay"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:passwordToggleEnabled="true"
             android:layout_marginTop="20dp">
 
             <android.support.design.widget.TextInputEditText
@@ -82,30 +137,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="password"
-                android:textSize="14sp"
-                android:inputType="textPassword"/>
+                android:textSize="14sp"/>
         </android.support.design.widget.TextInputLayout>
 
         <Button
-            android:id="@+id/btLogin"
+            android:id="@+id/btRegis"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="login"
+            android:text="daftar"
             android:textColor="@color/white"
             android:textStyle="bold"
             android:background="@drawable/bg_button"
             android:layout_marginTop="40dp"/>
 
-        <TextView
-            android:id="@+id/btMakeAcc"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Buat akun wali murid"
-            android:textSize="14sp"
-            android:textColor="@color/colorPrimary"
-            android:layout_marginTop="80dp"
-            android:layout_marginBottom="10dp"
-            android:layout_gravity="center"/>
     </LinearLayout>
 
 </android.support.v4.widget.NestedScrollView>
