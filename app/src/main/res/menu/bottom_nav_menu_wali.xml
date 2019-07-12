@@ -17,8 +17,8 @@
         android:title="Daftar guru" />
 
     <item
-        android:id="@+id/nav_profil"
+        android:id="@+id/nav_keluar"
         android:icon="@drawable/ic_notifications_black_24dp"
-        android:title="Profil" />
+        android:title="Keluar" />
 
 </menu>

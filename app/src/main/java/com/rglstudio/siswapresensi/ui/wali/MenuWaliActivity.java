@@ -13,7 +13,6 @@ import com.rglstudio.siswapresensi.R;
 import com.rglstudio.siswapresensi.ui.wali.daftarguru.DaftarGuruFragment;
 import com.rglstudio.siswapresensi.ui.wali.nilai.NilaiFragment;
 import com.rglstudio.siswapresensi.ui.wali.presensi.PresensiFragment;
-import com.rglstudio.siswapresensi.ui.wali.profil.ProfilWaliFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -27,7 +26,6 @@ public class MenuWaliActivity extends AppCompatActivity {
     final Fragment fragNilai = new NilaiFragment();
     final Fragment fragPresensi = new PresensiFragment();
     final Fragment fragGuru = new DaftarGuruFragment();
-    final Fragment fragProfil = new ProfilWaliFragment();
     final FragmentManager fm = getSupportFragmentManager();
     Fragment active = fragNilai;
 
@@ -49,9 +47,8 @@ public class MenuWaliActivity extends AppCompatActivity {
                     fm.beginTransaction().hide(active).show(fragGuru).commit();
                     active = fragGuru;
                     return true;
-                case R.id.nav_profil:
-                    fm.beginTransaction().hide(active).show(fragProfil).commit();
-                    active = fragProfil;
+                case R.id.nav_keluar:
+
                     return true;
             }
             return false;
@@ -69,7 +66,6 @@ public class MenuWaliActivity extends AppCompatActivity {
 
         fm.beginTransaction().add(R.id.fragment_container, fragPresensi, "fragPresensi").hide(fragPresensi).commit();
         fm.beginTransaction().add(R.id.fragment_container, fragGuru, "fragGuru").hide(fragGuru).commit();
-        fm.beginTransaction().add(R.id.fragment_container, fragProfil, "fragProfil").hide(fragProfil).commit();
         fm.beginTransaction().add(R.id.fragment_container, fragNilai, "fragNilai").commit();
     }
 
