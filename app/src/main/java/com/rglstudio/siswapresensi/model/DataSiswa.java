@@ -7,7 +7,7 @@ public class DataSiswa {
     @SerializedName("nis")
     @Expose
     private String nis;
-    @SerializedName("nama")
+    @SerializedName("nama_siswa")
     @Expose
     private String nama;
     @SerializedName("tempat_lahir")

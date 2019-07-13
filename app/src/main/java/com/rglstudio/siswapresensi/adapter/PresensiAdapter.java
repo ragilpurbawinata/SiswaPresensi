@@ -1,5 +1,6 @@
 package com.rglstudio.siswapresensi.adapter;
 
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -8,11 +9,29 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.rglstudio.siswapresensi.R;
+import com.rglstudio.siswapresensi.model.DataPresensi;
+import com.rglstudio.siswapresensi.util.DateFormatUtil;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class PresensiAdapter extends RecyclerView.Adapter<PresensiAdapter.Holder> {
+    private List<DataPresensi> list;
+
+    public PresensiAdapter(List<DataPresensi> list) {
+        this.list = list;
+    }
+
+    public List<DataPresensi> getList() {
+        return list;
+    }
+
+    public void setList(List<DataPresensi> list) {
+        this.list = list;
+    }
+
     @NonNull
     @Override
     public Holder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
@@ -22,14 +41,29 @@ public class PresensiAdapter extends RecyclerView.Adapter<PresensiAdapter.Holder
 
     @Override
     public void onBindViewHolder(@NonNull Holder holder, int i) {
-        holder.date.setText("20 Juli 2019");
-        holder.sesi.setText("Sesi : Pagi");
-        holder.status.setText("Hadir");
+        DataPresensi dataPresensi = list.get(i);
+
+        holder.date.setText(DateFormatUtil.formatDisplay(dataPresensi.getTanggal(), "yyyy-MM-dd",
+                "E, d MMMM yyyy"));
+        holder.sesi.setText("Sesi : "+dataPresensi.getSesi());
+        holder.status.setText(dataPresensi.getStatus());
+
+        switch (dataPresensi.getStatus()){
+            case "Hadir":
+                holder.status.setTextColor(Color.parseColor("#3da330"));
+                break;
+            case "Izin":
+                holder.status.setTextColor(Color.parseColor("#ffc107"));
+                break;
+            case "Alpha":
+                holder.status.setTextColor(Color.parseColor("#e23e3e"));
+                break;
+        }
     }
 
     @Override
     public int getItemCount() {
-        return 50;
+        return list.size();
     }
 
     public class Holder extends RecyclerView.ViewHolder {

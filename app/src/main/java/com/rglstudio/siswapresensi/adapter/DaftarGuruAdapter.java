@@ -8,11 +8,20 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.rglstudio.siswapresensi.R;
+import com.rglstudio.siswapresensi.model.DataGuru;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class DaftarGuruAdapter extends RecyclerView.Adapter<DaftarGuruAdapter.Holder> {
+    private List<DataGuru> list;
+
+    public DaftarGuruAdapter(List<DataGuru> list) {
+        this.list = list;
+    }
+
     @NonNull
     @Override
     public Holder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
@@ -22,14 +31,16 @@ public class DaftarGuruAdapter extends RecyclerView.Adapter<DaftarGuruAdapter.Ho
 
     @Override
     public void onBindViewHolder(@NonNull Holder holder, int i) {
-        holder.name.setText("Budiman");
-        holder.telp.setText("080000000 | bantul");
-        holder.mapel.setText("Matematika");
+        DataGuru dataGuru = list.get(i);
+
+        holder.name.setText(dataGuru.getNama());
+        holder.telp.setText(dataGuru.getTelepon()+" | "+dataGuru.getAlamat());
+        holder.mapel.setText(dataGuru.getNamaMapel());
     }
 
     @Override
     public int getItemCount() {
-        return 50;
+        return list.size();
     }
 
     public class Holder extends RecyclerView.ViewHolder {

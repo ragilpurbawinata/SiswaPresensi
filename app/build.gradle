@@ -14,6 +14,10 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField "String", "BASEURL", "\"https://dedynurarifin.000webhostapp.com/\""
+        }
+        debug {
+            buildConfigField "String", "BASEURL", "\"https://dedynurarifin.000webhostapp.com/\""
         }
     }
 }
@@ -41,4 +45,6 @@ dependencies {
     //butter knife
     implementation 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+    //date range picker
+    implementation 'com.github.psinetron:slycalendarview:0.0.9'
 }

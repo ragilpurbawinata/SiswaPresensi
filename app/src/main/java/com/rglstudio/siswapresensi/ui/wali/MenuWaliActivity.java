@@ -1,5 +1,6 @@
 package com.rglstudio.siswapresensi.ui.wali;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -10,9 +11,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.rglstudio.siswapresensi.R;
+import com.rglstudio.siswapresensi.ui.login.LoginActivity;
 import com.rglstudio.siswapresensi.ui.wali.daftarguru.DaftarGuruFragment;
 import com.rglstudio.siswapresensi.ui.wali.nilai.NilaiFragment;
 import com.rglstudio.siswapresensi.ui.wali.presensi.PresensiFragment;
+import com.rglstudio.siswapresensi.util.MyPref;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -28,6 +31,8 @@ public class MenuWaliActivity extends AppCompatActivity {
     final Fragment fragGuru = new DaftarGuruFragment();
     final FragmentManager fm = getSupportFragmentManager();
     Fragment active = fragNilai;
+
+    private MyPref pref;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -48,7 +53,10 @@ public class MenuWaliActivity extends AppCompatActivity {
                     active = fragGuru;
                     return true;
                 case R.id.nav_keluar:
-
+                    pref.logout();
+                    Intent intent = new Intent(MenuWaliActivity.this, LoginActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
                     return true;
             }
             return false;
@@ -61,7 +69,11 @@ public class MenuWaliActivity extends AppCompatActivity {
         setContentView(R.layout.activity_menu_wali);
         ButterKnife.bind(this);
 
+        pref = new MyPref(this);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Nama siswa : "+pref.getKeyUserSiswaName());
+        getSupportActionBar().setSubtitle("NIS : "+pref.getKeyUserNis()+" | Kelas : "+pref.getKeyUserSiswaKelas());
+
         navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         fm.beginTransaction().add(R.id.fragment_container, fragPresensi, "fragPresensi").hide(fragPresensi).commit();

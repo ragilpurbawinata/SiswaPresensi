@@ -16,6 +16,9 @@ public class DataNilai {
     @SerializedName("nilai")
     @Expose
     private String nilai;
+    @SerializedName("nama_mapel")
+    @Expose
+    private String namaMapel;
 
     public String getKdNilai() {
         return kdNilai;
@@ -47,5 +50,13 @@ public class DataNilai {
 
     public void setNilai(String nilai) {
         this.nilai = nilai;
+    }
+
+    public String getNamaMapel() {
+        return namaMapel;
+    }
+
+    public void setNamaMapel(String namaMapel) {
+        this.namaMapel = namaMapel;
     }
 }
