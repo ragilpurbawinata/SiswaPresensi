@@ -4,17 +4,17 @@
     <item
         android:id="@+id/nav_nilai"
         android:icon="@drawable/ic_scores"
-        android:title="Nilai" />
+        android:title="Input nilai" />
 
     <item
         android:id="@+id/nav_presensi"
         android:icon="@drawable/ic_resume"
-        android:title="Presensi" />
+        android:title="Input presensi" />
 
     <item
-        android:id="@+id/nav_guru"
-        android:icon="@drawable/ic_team"
-        android:title="Daftar guru" />
+        android:id="@+id/nav_profil"
+        android:icon="@drawable/ic_user"
+        android:title="Profil" />
 
     <item
         android:id="@+id/nav_keluar"

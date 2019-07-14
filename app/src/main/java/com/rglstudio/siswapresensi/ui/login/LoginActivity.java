@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.rglstudio.siswapresensi.R;
 import com.rglstudio.siswapresensi.model.ResponLogin;
 import com.rglstudio.siswapresensi.service.API;
+import com.rglstudio.siswapresensi.ui.guru.MenuGuruActivity;
 import com.rglstudio.siswapresensi.ui.register.RegisterActivity;
 import com.rglstudio.siswapresensi.ui.wali.MenuWaliActivity;
 import com.rglstudio.siswapresensi.util.DialogUtil;
@@ -62,7 +63,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
                 startActivity(intent);
             }
             else if (pref.getKeyLoginAs().equals("guru")) {
-                Intent intent = new Intent(LoginActivity.this, MenuWaliActivity.class);
+                Intent intent = new Intent(LoginActivity.this, MenuGuruActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
             }
@@ -133,6 +134,14 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
             pref.setKeyLoginAs("guru");
             pref.setKeyUserId(responLogin.getData().getGuru().getId());
             pref.setKeyUserKdMapel(responLogin.getData().getGuru().getKdMapel());
+            pref.setKeyUserNameMapel(responLogin.getData().getGuru().getNamaMapel());
+            pref.setKeyUserGuruName(responLogin.getData().getGuru().getNama());
+            pref.setKeyUserGuruAddress(responLogin.getData().getGuru().getAlamat());
+            pref.setKeyUserGuruTelp(responLogin.getData().getGuru().getTelepon());
+
+            Intent intent = new Intent(LoginActivity.this, MenuGuruActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
         }
         else if (loginAs.equals("wali")){
             pref.setKeyLoginAs("wali");

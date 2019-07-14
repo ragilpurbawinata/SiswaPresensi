@@ -4,19 +4,19 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class ResponAddPresensi {
-    @SerializedName("status")
+    @SerializedName("success")
     @Expose
-    private String status;
+    private Boolean success;
     @SerializedName("message")
     @Expose
     private String message;
 
-    public String getStatus() {
-        return status;
+    public Boolean getSuccess() {
+        return success;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setSuccess(Boolean success) {
+        this.success = success;
     }
 
     public String getMessage() {

@@ -80,6 +80,6 @@ public class NilaiFragment extends Fragment implements NilaiView{
     @Override
     public void onFailed(String msg) {
         refreshLayout.setRefreshing(false);
-        DialogUtil.showAlert(getContext(), msg);
+        DialogUtil.showToast(getContext(), msg);
     }
 }

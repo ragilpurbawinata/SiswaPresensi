@@ -1,4 +1,4 @@
-package com.rglstudio.siswapresensi.ui.wali;
+package com.rglstudio.siswapresensi.ui.guru;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -13,24 +13,24 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.rglstudio.siswapresensi.R;
+import com.rglstudio.siswapresensi.ui.guru.inputnilai.InputNilaiFragment;
+import com.rglstudio.siswapresensi.ui.guru.inputpresensi.InputPresensiFragment;
+import com.rglstudio.siswapresensi.ui.guru.profil.ProfilFragment;
 import com.rglstudio.siswapresensi.ui.login.LoginActivity;
-import com.rglstudio.siswapresensi.ui.wali.daftarguru.DaftarGuruFragment;
-import com.rglstudio.siswapresensi.ui.wali.nilai.NilaiFragment;
-import com.rglstudio.siswapresensi.ui.wali.presensi.PresensiFragment;
 import com.rglstudio.siswapresensi.util.MyPref;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MenuWaliActivity extends AppCompatActivity {
+public class MenuGuruActivity extends AppCompatActivity {
     @BindView(R.id.toolbar)
     Toolbar toolbar;
     @BindView(R.id.nav_view)
     BottomNavigationView navView;
 
-    final Fragment fragNilai = new NilaiFragment();
-    final Fragment fragPresensi = new PresensiFragment();
-    final Fragment fragGuru = new DaftarGuruFragment();
+    final Fragment fragNilai = new InputNilaiFragment();
+    final Fragment fragPresensi = new InputPresensiFragment();
+    final Fragment fragProfil = new ProfilFragment();
     final FragmentManager fm = getSupportFragmentManager();
     Fragment active = fragNilai;
 
@@ -50,9 +50,9 @@ public class MenuWaliActivity extends AppCompatActivity {
                     fm.beginTransaction().hide(active).show(fragPresensi).commit();
                     active = fragPresensi;
                     return true;
-                case R.id.nav_guru:
-                    fm.beginTransaction().hide(active).show(fragGuru).commit();
-                    active = fragGuru;
+                case R.id.nav_profil:
+                    fm.beginTransaction().hide(active).show(fragProfil).commit();
+                    active = fragProfil;
                     return true;
                 case R.id.nav_keluar:
                     confirmLogout();
@@ -65,18 +65,18 @@ public class MenuWaliActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_menu_wali);
+        setContentView(R.layout.activity_menu_guru);
         ButterKnife.bind(this);
 
         pref = new MyPref(this);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Nama siswa : "+pref.getKeyUserSiswaName());
-        getSupportActionBar().setSubtitle("NIS : "+pref.getKeyUserNis()+" | Kelas : "+pref.getKeyUserSiswaKelas());
+        getSupportActionBar().setTitle(pref.getKeyUserGuruName());
+        getSupportActionBar().setSubtitle("Mapel : "+pref.getKeyUserNameMapel());
 
         navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         fm.beginTransaction().add(R.id.fragment_container, fragPresensi, "fragPresensi").hide(fragPresensi).commit();
-        fm.beginTransaction().add(R.id.fragment_container, fragGuru, "fragGuru").hide(fragGuru).commit();
+        fm.beginTransaction().add(R.id.fragment_container, fragProfil, "fragProfil").hide(fragProfil).commit();
         fm.beginTransaction().add(R.id.fragment_container, fragNilai, "fragNilai").commit();
     }
 
@@ -87,7 +87,7 @@ public class MenuWaliActivity extends AppCompatActivity {
         alertDialog.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 pref.logout();
-                Intent intent = new Intent(MenuWaliActivity.this, LoginActivity.class);
+                Intent intent = new Intent(MenuGuruActivity.this, LoginActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
             }
@@ -101,5 +101,4 @@ public class MenuWaliActivity extends AppCompatActivity {
         AlertDialog ad = alertDialog.create();
         ad.show();
     }
-
 }

@@ -84,6 +84,11 @@ public class PresensiFragment extends Fragment implements PresensiView{
                                 if (firstDate != null && secondDate !=null) {
                                     startDate = new SimpleDateFormat("yyyy-MM-dd").format(firstDate.getTime());
                                     endDate = new SimpleDateFormat("yyyy-MM-dd").format(secondDate.getTime());
+
+                                    String rangeDate = new SimpleDateFormat("d MMM yyyy").format(firstDate.getTime()) + " - "
+                                            + new SimpleDateFormat("d MMM yyyy").format(secondDate.getTime());
+                                    etTgl.setText(rangeDate);
+
                                     adapter.getList().clear();
                                     adapter.notifyDataSetChanged();
                                     loadData();
@@ -121,6 +126,6 @@ public class PresensiFragment extends Fragment implements PresensiView{
     @Override
     public void onFailed(String msg) {
         refreshLayout.setRefreshing(false);
-        DialogUtil.showAlert(getContext(), msg);
+        DialogUtil.showToast(getContext(), msg);
     }
 }

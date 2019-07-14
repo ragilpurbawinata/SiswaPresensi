@@ -75,6 +75,6 @@ public class DaftarGuruFragment extends Fragment implements DaftarGuruView{
     @Override
     public void onFailed(String msg) {
         refreshLayout.setRefreshing(false);
-        DialogUtil.showAlert(getContext(), msg);
+        DialogUtil.showToast(getContext(), msg);
     }
 }

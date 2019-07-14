@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/bg_color_tab"
+    android:padding="16dp"
+    tools:context=".ui.guru.profil.ProfilFragment">
+
+    <TextView
+        android:id="@+id/namaGuru"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="Budiman"
+        android:textSize="24sp"
+        android:textColor="@color/colorPrimary"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/mapelGuru"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="MP001 | Matematika"
+        android:textSize="14sp"
+        android:textColor="@color/black"
+        android:layout_marginTop="5dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Alamat"
+        android:textSize="12sp"
+        android:textColor="@color/grey"
+        android:layout_marginTop="20dp"/>
+
+    <TextView
+        android:id="@+id/alamatGuru"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="Bantul"
+        android:textSize="14sp"
+        android:textColor="@color/black"
+        android:layout_marginTop="5dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Telepon"
+        android:textSize="12sp"
+        android:textColor="@color/grey"
+        android:layout_marginTop="20dp"/>
+
+    <TextView
+        android:id="@+id/teleponGuru"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="0878900000000"
+        android:textSize="14sp"
+        android:textColor="@color/black"
+        android:layout_marginTop="5dp"/>
+
+</LinearLayout>

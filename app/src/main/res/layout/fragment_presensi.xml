@@ -16,11 +16,16 @@
 
         <EditText
             android:id="@+id/etTgl"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="Pilih range tanggal"
             android:layout_margin="10dp"
-            android:focusable="false"/>
+            android:focusable="false"
+            android:textSize="18sp"
+            android:padding="16dp"
+            android:layout_marginTop="20dp"
+            android:textAlignment="center"
+            android:layout_gravity="center"/>
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rvPresensi"

@@ -28,6 +28,9 @@ public class LoginGuru {
     @SerializedName("password")
     @Expose
     private String password;
+    @SerializedName("nama_mapel")
+    @Expose
+    private String namaMapel;
 
     public String getId() {
         return id;
@@ -91,5 +94,13 @@ public class LoginGuru {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getNamaMapel() {
+        return namaMapel;
+    }
+
+    public void setNamaMapel(String namaMapel) {
+        this.namaMapel = namaMapel;
     }
 }

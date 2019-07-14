@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.widget.Toast;
 
 public class DialogUtil {
     private static ProgressDialog m_Dialog;
@@ -32,5 +33,9 @@ public class DialogUtil {
         });
         ad = alertDialog.create();
         ad.show();
+    }
+
+    public  static void showToast(Context context, String msg){
+        Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
     }
 }

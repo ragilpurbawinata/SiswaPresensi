@@ -8,13 +8,19 @@
     tools:context=".ui.wali.nilai.NilaiFragment"
     android:background="@color/bg_color_tab">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rvNilai"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="10dp"
-        android:clipToPadding="false">
+        android:orientation="vertical">
 
-    </android.support.v7.widget.RecyclerView>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rvNilai"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="10dp"
+            android:clipToPadding="false">
+
+        </android.support.v7.widget.RecyclerView>
+    </LinearLayout>
 
 </android.support.v4.widget.SwipeRefreshLayout>

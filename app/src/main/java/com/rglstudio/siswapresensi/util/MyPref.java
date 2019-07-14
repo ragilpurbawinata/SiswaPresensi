@@ -18,11 +18,16 @@ public class MyPref {
     private static final String KEY_IS_LOGIN = "login";
     private static final String KEY_LOGIN_AS = "user_as";
     private static final String KEY_USER_ID = "user_id";
-    private static final String KEY_USER_KD_MAPEL = "user_kd_mapel";
 
     private static final String KEY_USER_NIS = "user_nis";
     private static final String KEY_USER_SISWA_NAME = "user_siswa_name";
     private static final String KEY_USER_SISWA_KELAS = "user_siswa_kelas";
+
+    private static final String KEY_USER_KD_MAPEL = "user_kd_mapel";
+    private static final String KEY_USER_NAME_MAPEL = "user_name_mapel";
+    private static final String KEY_USER_GURU_NAME = "user_guru_name";
+    private static final String KEY_USER_GURU_ADDRESS = "user_guru_add";
+    private static final String KEY_USER_GURU_TELP = "user_guru_telp";
 
     public MyPref(Context context) {
         this._context = context;
@@ -34,10 +39,15 @@ public class MyPref {
         setKeyIsLogin(false);
         setKeyLoginAs("");
         setKeyUserId("");
-        setKeyUserKdMapel("");
         setKeyUserNis("");
         setKeyUserSiswaName("");
         setKeyUserSiswaKelas("");
+
+        setKeyUserKdMapel("");
+        setKeyUserNameMapel("");
+        setKeyUserGuruName("");
+        setKeyUserGuruAddress("");
+        setKeyUserGuruTelp("");
         pref.edit().remove(PREF_NAME).commit();
     }
 
@@ -95,6 +105,38 @@ public class MyPref {
     }
     public void setKeyUserSiswaKelas(String siswaKelas){
         editor.putString(KEY_USER_SISWA_KELAS, siswaKelas);
+        editor.commit();
+    }
+
+    public String getKeyUserNameMapel(){
+        return pref.getString(KEY_USER_NAME_MAPEL, "");
+    }
+    public void setKeyUserNameMapel(String nameMapel){
+        editor.putString(KEY_USER_NAME_MAPEL, nameMapel);
+        editor.commit();
+    }
+
+    public String getKeyUserGuruName(){
+        return pref.getString(KEY_USER_GURU_NAME, "");
+    }
+    public void setKeyUserGuruName(String guruName){
+        editor.putString(KEY_USER_GURU_NAME, guruName);
+        editor.commit();
+    }
+
+    public String getKeyUserGuruAddress(){
+        return pref.getString(KEY_USER_GURU_ADDRESS, "");
+    }
+    public void setKeyUserGuruAddress(String guruAddress){
+        editor.putString(KEY_USER_GURU_ADDRESS, guruAddress);
+        editor.commit();
+    }
+
+    public String getKeyUserGuruTelp(){
+        return pref.getString(KEY_USER_GURU_TELP, "");
+    }
+    public void setKeyUserGuruTelp(String guruTelp){
+        editor.putString(KEY_USER_GURU_TELP, guruTelp);
         editor.commit();
     }
 }
