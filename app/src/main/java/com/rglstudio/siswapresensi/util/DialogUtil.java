@@ -19,7 +19,9 @@ public class DialogUtil {
     }
 
     public static void dialogDismiss(){
-        m_Dialog.dismiss();
+        if (m_Dialog.isShowing()) {
+            m_Dialog.dismiss();
+        }
     }
 
     public static void showAlert(Context context, String msg){

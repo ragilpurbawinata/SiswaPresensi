@@ -11,9 +11,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.rglstudio.siswapresensi.R;
-import com.rglstudio.siswapresensi.adapter.InputNilaiPagerAdapter;
+import com.rglstudio.siswapresensi.adapter.KelasPagerAdapter;
 import com.rglstudio.siswapresensi.model.ResponKelas;
 import com.rglstudio.siswapresensi.service.API;
+import com.rglstudio.siswapresensi.ui.guru.globalpresenterview.DaftarKelasPresenter;
+import com.rglstudio.siswapresensi.ui.guru.globalpresenterview.DaftarKelasView;
 import com.rglstudio.siswapresensi.util.DialogUtil;
 
 import butterknife.BindView;
@@ -22,23 +24,20 @@ import butterknife.ButterKnife;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class InputNilaiFragment extends Fragment implements DaftarKelasView{
+public class InputNilaiFragment extends Fragment implements DaftarKelasView {
     @BindView(R.id.swipeLay)
     SwipeRefreshLayout refreshLayout;
-    @BindView(R.id.tab)
+    @BindView(R.id.tabNilai)
     TabLayout tab;
-    @BindView(R.id.pager)
+    @BindView(R.id.pagerNilai)
     ViewPager pager;
 
     private DaftarKelasPresenter presenter;
-    private InputNilaiPagerAdapter pagerAdapter;
-    //private SiswaKelasAdapter adapter;
-
+    private KelasPagerAdapter pagerAdapter;
 
     public InputNilaiFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -61,7 +60,7 @@ public class InputNilaiFragment extends Fragment implements DaftarKelasView{
 
     private void initView() {
         presenter = new DaftarKelasPresenter(this);
-        pagerAdapter = new InputNilaiPagerAdapter(getFragmentManager());
+        pagerAdapter = new KelasPagerAdapter(getFragmentManager());
     }
 
     private void loadData() {
@@ -74,7 +73,7 @@ public class InputNilaiFragment extends Fragment implements DaftarKelasView{
         refreshLayout.setRefreshing(false);
         for (int i=0;i<responKelas.getData().size();i++){
             Bundle bundle = new Bundle();
-            KelasFragment fragment = new KelasFragment();
+            NilaiSiswaFragment fragment = new NilaiSiswaFragment();
 
             bundle.putString("kelas", responKelas.getData().get(i).getKdKelas());
             fragment.setArguments(bundle);

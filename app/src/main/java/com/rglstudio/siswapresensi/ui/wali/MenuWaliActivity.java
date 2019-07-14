@@ -75,9 +75,9 @@ public class MenuWaliActivity extends AppCompatActivity {
 
         navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
+        fm.beginTransaction().add(R.id.fragment_container, fragNilai, "fragNilai").commit();
         fm.beginTransaction().add(R.id.fragment_container, fragPresensi, "fragPresensi").hide(fragPresensi).commit();
         fm.beginTransaction().add(R.id.fragment_container, fragGuru, "fragGuru").hide(fragGuru).commit();
-        fm.beginTransaction().add(R.id.fragment_container, fragNilai, "fragNilai").commit();
     }
 
     private void confirmLogout(){

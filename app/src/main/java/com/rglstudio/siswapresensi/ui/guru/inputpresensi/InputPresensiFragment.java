@@ -2,18 +2,38 @@ package com.rglstudio.siswapresensi.ui.guru.inputpresensi;
 
 
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.rglstudio.siswapresensi.R;
+import com.rglstudio.siswapresensi.adapter.KelasPagerAdapter;
+import com.rglstudio.siswapresensi.model.ResponKelas;
+import com.rglstudio.siswapresensi.service.API;
+import com.rglstudio.siswapresensi.ui.guru.globalpresenterview.DaftarKelasPresenter;
+import com.rglstudio.siswapresensi.ui.guru.globalpresenterview.DaftarKelasView;
+import com.rglstudio.siswapresensi.util.DialogUtil;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class InputPresensiFragment extends Fragment {
+public class InputPresensiFragment extends Fragment implements DaftarKelasView {
+    @BindView(R.id.swipeLay)
+    SwipeRefreshLayout refreshLayout;
+    @BindView(R.id.tabPresensi)
+    TabLayout tab;
+    @BindView(R.id.pagerPresensi)
+    ViewPager pager;
 
+    private DaftarKelasPresenter presenter;
+    private KelasPagerAdapter pagerAdapter;
 
     public InputPresensiFragment() {
         // Required empty public constructor
@@ -23,8 +43,52 @@ public class InputPresensiFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_input_presensi, container, false);
+        View view = inflater.inflate(R.layout.fragment_input_presensi, container, false);
+        ButterKnife.bind(this, view);
+
+        initView();
+        loadData();
+
+        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                loadData();
+            }
+        });
+
+        return view;
     }
 
+    private void initView() {
+        presenter = new DaftarKelasPresenter(this);
+        pagerAdapter = new KelasPagerAdapter(getFragmentManager());
+    }
+
+    private void loadData() {
+        refreshLayout.setRefreshing(true);
+        presenter.getKelas(API.GET_ALL_KELAS);
+    }
+
+    @Override
+    public void onSuccess(ResponKelas responKelas) {
+        refreshLayout.setRefreshing(false);
+        for (int i=0;i<responKelas.getData().size();i++){
+            Bundle bundle = new Bundle();
+            PresensiSiswaFragment fragment = new PresensiSiswaFragment();
+
+            bundle.putString("kelas", responKelas.getData().get(i).getKdKelas());
+            fragment.setArguments(bundle);
+
+            pagerAdapter.addFragment(fragment, responKelas.getData().get(i).getNama());
+        }
+        pager.setAdapter(pagerAdapter);
+        pager.setOffscreenPageLimit(responKelas.getData().size());
+        tab.setupWithViewPager(pager);
+    }
+
+    @Override
+    public void onFailed(String msg) {
+        refreshLayout.setRefreshing(false);
+        DialogUtil.showToast(getContext(), msg);
+    }
 }

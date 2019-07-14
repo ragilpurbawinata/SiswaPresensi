@@ -2,6 +2,7 @@ package com.rglstudio.siswapresensi.ui.guru.inputnilai;
 
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -14,12 +15,15 @@ import android.view.ViewGroup;
 import android.widget.NumberPicker;
 
 import com.rglstudio.siswapresensi.R;
-import com.rglstudio.siswapresensi.adapter.SiswaKelasAdapter;
+import com.rglstudio.siswapresensi.adapter.InputAdapter;
 import com.rglstudio.siswapresensi.model.DataSiswa;
 import com.rglstudio.siswapresensi.model.ResponAddNilai;
+import com.rglstudio.siswapresensi.model.ResponAddPresensi;
 import com.rglstudio.siswapresensi.model.ResponGcmId;
 import com.rglstudio.siswapresensi.model.ResponSiswa;
 import com.rglstudio.siswapresensi.service.API;
+import com.rglstudio.siswapresensi.ui.guru.globalpresenterview.SiswaKelasPresenter;
+import com.rglstudio.siswapresensi.ui.guru.globalpresenterview.SiswaKelasView;
 import com.rglstudio.siswapresensi.util.DialogUtil;
 import com.rglstudio.siswapresensi.util.MyPref;
 
@@ -29,19 +33,20 @@ import butterknife.ButterKnife;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class KelasFragment extends Fragment implements SiswaKelasView, SiswaKelasAdapter.SiswaKelasListerner {
-    @BindView(R.id.rvKelas)
+public class NilaiSiswaFragment extends Fragment implements SiswaKelasView, InputAdapter.SiswaKelasListerner {
+    @BindView(R.id.rvNilaiInput)
     RecyclerView rvKelas;
 
     private MyPref pref;
     private SiswaKelasPresenter presenter;
-    private SiswaKelasAdapter adapter;
+    private InputAdapter adapter;
     private String kdKelas;
     private AlertDialog.Builder dialog;
+    private ProgressDialog m_Dialog;
 
     private int nilai;
 
-    public KelasFragment() {
+    public NilaiSiswaFragment() {
         // Required empty public constructor
     }
 
@@ -54,7 +59,7 @@ public class KelasFragment extends Fragment implements SiswaKelasView, SiswaKela
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_kelas, container, false);
+        View view = inflater.inflate(R.layout.fragment_nilai_siswa, container, false);
         ButterKnife.bind(this, view);
 
         initView();
@@ -64,6 +69,7 @@ public class KelasFragment extends Fragment implements SiswaKelasView, SiswaKela
     }
 
     private void initView() {
+        m_Dialog = new ProgressDialog(getContext());
         dialog = new AlertDialog.Builder(getContext());
         pref = new MyPref(getContext());
         presenter = new SiswaKelasPresenter(this);
@@ -76,7 +82,7 @@ public class KelasFragment extends Fragment implements SiswaKelasView, SiswaKela
 
     @Override
     public void onSuccessGetSiswa(ResponSiswa responSiswa) {
-        adapter = new SiswaKelasAdapter(responSiswa.getData(), this);
+        adapter = new InputAdapter(responSiswa.getData(), this);
         rvKelas.setAdapter(adapter);
     }
 
@@ -87,13 +93,18 @@ public class KelasFragment extends Fragment implements SiswaKelasView, SiswaKela
 
     @Override
     public void onSuccessAddNilai(ResponAddNilai responAddNilai) {
-        DialogUtil.dialogDismiss();
+        dialogDismiss();
         DialogUtil.showToast(getContext(), responAddNilai.getMessage());
     }
 
     @Override
+    public void onSuccessAddPresensi(ResponAddPresensi responAddPresensi) {
+
+    }
+
+    @Override
     public void onFailed(String msg) {
-        DialogUtil.dialogDismiss();
+        dialogDismiss();
         DialogUtil.showToast(getContext(), msg);
     }
 
@@ -115,7 +126,7 @@ public class KelasFragment extends Fragment implements SiswaKelasView, SiswaKela
                 nilai = np.getValue();
                 presenter.addNilai(API.ADD_NILAI, dataSiswa.getNis(), pref.getKeyUserKdMapel(), String.valueOf(nilai));
                 dialog.dismiss();
-                DialogUtil.showProgressDialog(getContext(), "Menambahkan nilai...");
+                showProgressDialog("Menambahkan nilai...");
             }
         });
 
@@ -127,11 +138,18 @@ public class KelasFragment extends Fragment implements SiswaKelasView, SiswaKela
         });
 
         dialog.show();
-
     }
 
-    @Override
-    public void onShareClick(DataSiswa dataSiswa) {
+    public void showProgressDialog(String message){
+        m_Dialog.setMessage(message);
+        m_Dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        m_Dialog.setCancelable(false);
+        m_Dialog.show();
+    }
 
+    public void dialogDismiss(){
+        if (m_Dialog.isShowing()) {
+            m_Dialog.dismiss();
+        }
     }
 }

@@ -5,10 +5,10 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/bg_color_tab"
-    tools:context=".ui.guru.inputnilai.KelasFragment">
+    tools:context=".ui.guru.inputnilai.NilaiSiswaFragment">
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/rvKelas"
+        android:id="@+id/rvNilaiInput"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="10dp"

@@ -1,4 +1,4 @@
-package com.rglstudio.siswapresensi.ui.guru.inputnilai;
+package com.rglstudio.siswapresensi.ui.guru.globalpresenterview;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -7,6 +7,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.google.gson.Gson;
 import com.rglstudio.siswapresensi.model.ResponAddNilai;
+import com.rglstudio.siswapresensi.model.ResponAddPresensi;
 import com.rglstudio.siswapresensi.model.ResponGcmId;
 import com.rglstudio.siswapresensi.model.ResponSiswa;
 import com.rglstudio.siswapresensi.service.AppController;
@@ -102,7 +103,7 @@ public class SiswaKelasPresenter {
                             kelasView.onSuccessAddNilai(responAddNilai);
                         }
                         else {
-                            kelasView.onFailed("Data tidak ditemukan");
+                            kelasView.onFailed("Gagal menambahkan nilai");
                         }
                     }
                 },
@@ -119,6 +120,43 @@ public class SiswaKelasPresenter {
                 params.put("nis", nis);
                 params.put("kd_mapel", kdMapel);
                 params.put("nilai", nilai);
+
+                Timber.e("PARAMS " + params);
+                return params;
+            }
+        };
+        AppController.getInstance().addToRequestQueue(request);
+    }
+
+    public void addPresensi(String url, final String nis, final String tgl, final String status, final String sesi){
+        final StringRequest request = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Timber.e("RESPONSE "+response);
+                        ResponAddPresensi responAddPresensi = new Gson().fromJson(response, ResponAddPresensi.class);
+                        if (responAddPresensi.getSuccess()){
+                            kelasView.onSuccessAddPresensi(responAddPresensi);
+                        }
+                        else {
+                            kelasView.onFailed("Gagal menambahkan presensi");
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Timber.e("ERROR "+error.getMessage());
+                        kelasView.onFailed("Eror silahkan coba beberapa saat lagi");
+                    }
+                }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                HashMap<String, String> params = new HashMap<>();
+                params.put("nis", nis);
+                params.put("tanggal", tgl);
+                params.put("status", status);
+                params.put("sesi", sesi);
 
                 Timber.e("PARAMS " + params);
                 return params;

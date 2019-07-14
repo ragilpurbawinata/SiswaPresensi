@@ -7,11 +7,11 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class InputNilaiPagerAdapter extends FragmentStatePagerAdapter {
+public class KelasPagerAdapter extends FragmentStatePagerAdapter {
     private final List<Fragment> fragmentList = new ArrayList<>();
     private final List<String> titleList = new ArrayList<>();
 
-    public InputNilaiPagerAdapter(FragmentManager fm) {
+    public KelasPagerAdapter(FragmentManager fm) {
         super(fm);
     }
 

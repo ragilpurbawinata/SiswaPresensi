@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pilih sesi :"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:textColor="@color/grey"
+        android:layout_marginBottom="10dp"/>
+
+    <RadioGroup
+        android:id="@+id/rgSesi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/rbPagi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pagi"
+            android:textSize="14sp"
+            android:layout_marginEnd="20dp"
+            android:checked="true"/>
+
+        <RadioButton
+            android:id="@+id/rbSiang"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Siang"
+            android:textSize="14sp"
+            android:checked="false"/>
+    </RadioGroup>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pilih status kehadiran :"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:textColor="@color/grey"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="10dp"/>
+
+    <RadioGroup
+        android:id="@+id/rgStatus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/rbHadir"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hadir"
+            android:textSize="14sp"
+            android:layout_marginEnd="20dp"
+            android:checked="true"/>
+
+        <RadioButton
+            android:id="@+id/rbIzin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Izin"
+            android:textSize="14sp"
+            android:checked="false"
+            android:layout_marginEnd="20dp"/>
+
+        <RadioButton
+            android:id="@+id/rbAlpha"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Alpha"
+            android:textSize="14sp"
+            android:checked="false"/>
+    </RadioGroup>
+
+</LinearLayout>

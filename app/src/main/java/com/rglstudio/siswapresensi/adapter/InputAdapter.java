@@ -16,11 +16,11 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class SiswaKelasAdapter extends RecyclerView.Adapter<SiswaKelasAdapter.Holder> {
+public class InputAdapter extends RecyclerView.Adapter<InputAdapter.Holder> {
     private List<DataSiswa> list;
     private SiswaKelasListerner listerner;
 
-    public SiswaKelasAdapter(List<DataSiswa> list, SiswaKelasListerner listerner) {
+    public InputAdapter(List<DataSiswa> list, SiswaKelasListerner listerner) {
         this.list = list;
         this.listerner = listerner;
     }
@@ -28,7 +28,7 @@ public class SiswaKelasAdapter extends RecyclerView.Adapter<SiswaKelasAdapter.Ho
     @NonNull
     @Override
     public Holder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.rv_item_siswa_kelas, viewGroup, false);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.rv_item_input, viewGroup, false);
         return new Holder(view);
     }
 
@@ -44,13 +44,6 @@ public class SiswaKelasAdapter extends RecyclerView.Adapter<SiswaKelasAdapter.Ho
                 listerner.onInputClick(dataSiswa);
             }
         });
-
-        holder.btShare.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                listerner.onShareClick(dataSiswa);
-            }
-        });
     }
 
     @Override
@@ -63,8 +56,6 @@ public class SiswaKelasAdapter extends RecyclerView.Adapter<SiswaKelasAdapter.Ho
         TextView nama;
         @BindView(R.id.inputNilai)
         ImageView btInput;
-        @BindView(R.id.shareNilai)
-        ImageView btShare;
 
         public Holder(@NonNull View itemView) {
             super(itemView);
@@ -74,6 +65,5 @@ public class SiswaKelasAdapter extends RecyclerView.Adapter<SiswaKelasAdapter.Ho
 
     public interface SiswaKelasListerner{
         void onInputClick(DataSiswa dataSiswa);
-        void onShareClick(DataSiswa dataSiswa);
     }
 }
