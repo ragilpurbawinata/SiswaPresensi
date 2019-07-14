@@ -101,25 +101,25 @@
             android:layout_marginTop="20dp" />
 
         <RadioGroup
-            android:id="@+id/rgMasuk"
+            android:id="@+id/rgGender"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <RadioButton
-                android:id="@+id/rbWali"
+                android:id="@+id/rbLaki"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="laki-laki"
+                android:text="Laki-laki"
                 android:textSize="14sp"
                 android:layout_marginEnd="20dp"
                 android:checked="true"/>
 
             <RadioButton
-                android:id="@+id/rbGuru"
+                android:id="@+id/rbPerempuan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="perempuan"
+                android:text="Perempuan"
                 android:textSize="14sp"
                 android:checked="false"/>
         </RadioGroup>

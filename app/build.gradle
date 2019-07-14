@@ -47,4 +47,8 @@ dependencies {
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
     //date range picker
     implementation 'com.github.psinetron:slycalendarview:0.0.9'
+    //firebase
+    implementation 'com.google.firebase:firebase-core:17.0.0'
 }
+
+apply plugin: 'com.google.gms.google-services'
