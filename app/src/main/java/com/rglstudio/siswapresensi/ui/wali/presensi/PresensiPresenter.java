@@ -32,7 +32,7 @@ public class PresensiPresenter {
                             presensiView.onSuccess(responPresensi);
                         }
                         else {
-                            presensiView.onFailed("Data tidak ditemukan");
+                            presensiView.onFailed("Data presensi tidak ditemukan");
                         }
                     }
                 },

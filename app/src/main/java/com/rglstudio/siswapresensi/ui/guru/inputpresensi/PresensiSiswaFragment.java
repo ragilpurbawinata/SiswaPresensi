@@ -5,16 +5,17 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.RadioGroup;
+
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.rglstudio.siswapresensi.R;
 import com.rglstudio.siswapresensi.adapter.InputAdapter;
@@ -26,6 +27,8 @@ import com.rglstudio.siswapresensi.model.ResponSiswa;
 import com.rglstudio.siswapresensi.service.API;
 import com.rglstudio.siswapresensi.ui.guru.globalpresenterview.SiswaKelasPresenter;
 import com.rglstudio.siswapresensi.ui.guru.globalpresenterview.SiswaKelasView;
+import com.rglstudio.siswapresensi.ui.sendnotif.SendNotifPresenter;
+import com.rglstudio.siswapresensi.ui.sendnotif.SendNotifView;
 import com.rglstudio.siswapresensi.util.DateFormatUtil;
 import com.rglstudio.siswapresensi.util.DialogUtil;
 
@@ -39,7 +42,8 @@ import ru.slybeaver.slycalendarview.SlyCalendarDialog;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class PresensiSiswaFragment extends Fragment implements SiswaKelasView, InputAdapter.SiswaKelasListerner{
+public class PresensiSiswaFragment extends Fragment implements
+        SiswaKelasView, InputAdapter.SiswaKelasListerner, SendNotifView {
     @BindView(R.id.rvPresensiInput)
     RecyclerView rvKelas;
     @BindView(R.id.etTgl)
@@ -54,6 +58,7 @@ public class PresensiSiswaFragment extends Fragment implements SiswaKelasView, I
     private String tanggalPost;
     private String sesi = "pagi";
     private String status = "hadir";
+    private SendNotifPresenter sendNotifPresenter;
 
     public PresensiSiswaFragment() {
         // Required empty public constructor
@@ -109,7 +114,8 @@ public class PresensiSiswaFragment extends Fragment implements SiswaKelasView, I
         m_Dialog = new ProgressDialog(getContext());
         dialog = new AlertDialog.Builder(getContext());
         presenter = new SiswaKelasPresenter(this);
-        rvKelas.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
+        sendNotifPresenter = new SendNotifPresenter(this);
+        rvKelas.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
     }
 
     private void loadData() {
@@ -124,7 +130,9 @@ public class PresensiSiswaFragment extends Fragment implements SiswaKelasView, I
 
     @Override
     public void onSuccessGetGcm(ResponGcmId responGcmId) {
-
+        String title = "Notifikasi presensi siswa";
+        String msg = "Tanggal : "+etTgl.getText().toString()+" | Sesi : "+sesi+" | Keterangan : "+status;
+        sendNotifPresenter.sendNotification(responGcmId.getData().getGcmId(), title, msg);
     }
 
     @Override
@@ -136,6 +144,9 @@ public class PresensiSiswaFragment extends Fragment implements SiswaKelasView, I
     public void onSuccessAddPresensi(ResponAddPresensi responAddPresensi) {
         dialogDismiss();
         DialogUtil.showToast(getContext(), responAddPresensi.getMessage());
+
+        presenter.getGcm(API.GET_GCM_ID, responAddPresensi.getNis());
+        showProgressDialog("Mengirim notif...");
     }
 
     @Override
@@ -213,5 +224,17 @@ public class PresensiSiswaFragment extends Fragment implements SiswaKelasView, I
         if (m_Dialog.isShowing()) {
             m_Dialog.dismiss();
         }
+    }
+
+    @Override
+    public void onSuccessSendNotif(String msg) {
+        dialogDismiss();
+        DialogUtil.showToast(getContext(), msg);
+    }
+
+    @Override
+    public void onFailedSendNotif(String msg) {
+        dialogDismiss();
+        DialogUtil.showToast(getContext(), msg);
     }
 }

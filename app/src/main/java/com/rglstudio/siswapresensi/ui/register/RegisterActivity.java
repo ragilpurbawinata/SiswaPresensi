@@ -1,14 +1,15 @@
 package com.rglstudio.siswapresensi.ui.register;
 
 import android.os.Bundle;
-import android.support.design.widget.TextInputEditText;
-import android.support.design.widget.TextInputLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioGroup;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import com.rglstudio.siswapresensi.R;
 import com.rglstudio.siswapresensi.model.ResponRegister;
 import com.rglstudio.siswapresensi.service.API;

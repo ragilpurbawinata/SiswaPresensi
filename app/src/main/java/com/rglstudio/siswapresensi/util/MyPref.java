@@ -22,6 +22,7 @@ public class MyPref {
     private static final String KEY_USER_NIS = "user_nis";
     private static final String KEY_USER_SISWA_NAME = "user_siswa_name";
     private static final String KEY_USER_SISWA_KELAS = "user_siswa_kelas";
+    private static final String KEY_USER_GCM = "user_gcm";
 
     private static final String KEY_USER_KD_MAPEL = "user_kd_mapel";
     private static final String KEY_USER_NAME_MAPEL = "user_name_mapel";
@@ -137,6 +138,14 @@ public class MyPref {
     }
     public void setKeyUserGuruTelp(String guruTelp){
         editor.putString(KEY_USER_GURU_TELP, guruTelp);
+        editor.commit();
+    }
+
+    public String getKeyUserGcm(){
+        return pref.getString(KEY_USER_GCM, "");
+    }
+    public void setKeyUserGcm(String gcm){
+        editor.putString(KEY_USER_GCM, gcm);
         editor.commit();
     }
 }

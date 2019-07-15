@@ -1,11 +1,12 @@
 package com.rglstudio.siswapresensi.adapter;
 
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.rglstudio.siswapresensi.R;
 import com.rglstudio.siswapresensi.model.DataNilai;
@@ -18,7 +19,11 @@ import butterknife.ButterKnife;
 public class NilaiAdapter extends RecyclerView.Adapter<NilaiAdapter.Holder> {
     private List<DataNilai> list;
 
-    public NilaiAdapter(List<DataNilai> list) {
+    public List<DataNilai> getList() {
+        return list;
+    }
+
+    public void setList(List<DataNilai> list) {
         this.list = list;
     }
 

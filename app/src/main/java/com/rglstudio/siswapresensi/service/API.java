@@ -16,4 +16,7 @@ public class API {
     public static String ADD_PRESENSI = BASE_URL+"api/add-presensi";
     public static String ADD_GCM_ID = BASE_URL+"api/add-gcm-id";
     public static String GET_GCM_ID = BASE_URL+"api/get-gcm-by-nis";
+
+    public static String FCM_API = "https://fcm.googleapis.com/fcm/send";
+    public static String FCM_SERVER_KEY = "AAAAYsoZrOs:APA91bHIGqpvlx1hxkLU0bzXvtPn41OQnTmRW_-dqhnu3AHWBXjn9s3G0T-TYJctXUkpAz3MrZYzWeo_oN0D2CXOXuBcfGt9uRVSN_EuYDqA_GF3Z1xVFisbeqMI8l8Op0wlzc_Ha36d";
 }

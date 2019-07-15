@@ -2,13 +2,14 @@ package com.rglstudio.siswapresensi.ui.wali.daftarguru;
 
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.rglstudio.siswapresensi.R;
 import com.rglstudio.siswapresensi.adapter.DaftarGuruAdapter;
@@ -57,7 +58,8 @@ public class DaftarGuruFragment extends Fragment implements DaftarGuruView{
 
     private void initView() {
         presenter = new DaftarGuruPresenter(this);
-        rvGuru.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
+        adapter = new DaftarGuruAdapter();
+        rvGuru.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
     }
 
     private void loadData() {
@@ -68,7 +70,7 @@ public class DaftarGuruFragment extends Fragment implements DaftarGuruView{
     @Override
     public void onSuccess(ResponGuru responGuru) {
         refreshLayout.setRefreshing(false);
-        adapter = new DaftarGuruAdapter(responGuru.getData());
+        adapter.setList(responGuru.getData());
         rvGuru.setAdapter(adapter);
     }
 

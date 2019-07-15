@@ -2,16 +2,18 @@ package com.rglstudio.siswapresensi.ui.login;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.TextInputEditText;
-import android.support.design.widget.TextInputLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import com.rglstudio.siswapresensi.R;
+import com.rglstudio.siswapresensi.model.ResponAddGcmId;
 import com.rglstudio.siswapresensi.model.ResponLogin;
 import com.rglstudio.siswapresensi.service.API;
 import com.rglstudio.siswapresensi.ui.guru.MenuGuruActivity;
@@ -144,6 +146,8 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
             startActivity(intent);
         }
         else if (loginAs.equals("wali")){
+            presenter.sendGcm(API.ADD_GCM_ID, responLogin.getData().getWali().getNis(), pref.getKeyUserGcm());
+
             pref.setKeyLoginAs("wali");
             pref.setKeyUserId(responLogin.getData().getWali().getId());
             pref.setKeyUserNis(responLogin.getData().getWali().getNis());
@@ -154,6 +158,11 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
         }
+    }
+
+    @Override
+    public void onSuccessGcm(ResponAddGcmId responAddGcmId) {
+        DialogUtil.showToast(this, responAddGcmId.getMessage());
     }
 
     @Override

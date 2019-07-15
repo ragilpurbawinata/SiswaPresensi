@@ -1,12 +1,13 @@
 package com.rglstudio.siswapresensi.adapter;
 
 import android.graphics.Color;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.rglstudio.siswapresensi.R;
 import com.rglstudio.siswapresensi.model.DataPresensi;
@@ -19,10 +20,6 @@ import butterknife.ButterKnife;
 
 public class PresensiAdapter extends RecyclerView.Adapter<PresensiAdapter.Holder> {
     private List<DataPresensi> list;
-
-    public PresensiAdapter(List<DataPresensi> list) {
-        this.list = list;
-    }
 
     public List<DataPresensi> getList() {
         return list;

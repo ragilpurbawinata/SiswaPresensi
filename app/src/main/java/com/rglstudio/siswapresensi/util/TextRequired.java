@@ -1,9 +1,10 @@
 package com.rglstudio.siswapresensi.util;
 
-import android.support.design.widget.TextInputLayout;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+
+import com.google.android.material.textfield.TextInputLayout;
 
 public class TextRequired implements TextWatcher {
 

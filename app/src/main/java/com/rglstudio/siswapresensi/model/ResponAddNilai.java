@@ -10,6 +10,9 @@ public class ResponAddNilai {
     @SerializedName("message")
     @Expose
     private String message;
+    @SerializedName("nis")
+    @Expose
+    private String nis;
 
     public Boolean getSuccess() {
         return success;
@@ -25,5 +28,13 @@ public class ResponAddNilai {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    public String getNis() {
+        return nis;
+    }
+
+    public void setNis(String nis) {
+        this.nis = nis;
     }
 }

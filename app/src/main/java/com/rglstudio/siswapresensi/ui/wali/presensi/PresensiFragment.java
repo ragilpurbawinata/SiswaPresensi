@@ -2,14 +2,15 @@ package com.rglstudio.siswapresensi.ui.wali.presensi;
 
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.rglstudio.siswapresensi.R;
 import com.rglstudio.siswapresensi.adapter.PresensiAdapter;
@@ -89,7 +90,9 @@ public class PresensiFragment extends Fragment implements PresensiView{
                                             + new SimpleDateFormat("d MMM yyyy").format(secondDate.getTime());
                                     etTgl.setText(rangeDate);
 
-                                    adapter.getList().clear();
+                                    if (adapter.getList()!=null) {
+                                        adapter.getList().clear();
+                                    }
                                     adapter.notifyDataSetChanged();
                                     loadData();
                                 }
@@ -108,7 +111,8 @@ public class PresensiFragment extends Fragment implements PresensiView{
 
         pref = new MyPref(getContext());
         presenter = new PresensiPresenter(this);
-        rvPresensi.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
+        adapter = new PresensiAdapter();
+        rvPresensi.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
     }
 
     private void loadData() {
@@ -119,7 +123,7 @@ public class PresensiFragment extends Fragment implements PresensiView{
     @Override
     public void onSuccess(ResponPresensi responPresensi) {
         refreshLayout.setRefreshing(false);
-        adapter = new PresensiAdapter(responPresensi.getData());
+        adapter.setList(responPresensi.getData());
         rvPresensi.setAdapter(adapter);
     }
 

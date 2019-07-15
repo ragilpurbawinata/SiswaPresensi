@@ -28,7 +28,7 @@ public class DaftarGuruPresenter {
                             guruView.onSuccess(responGuru);
                         }
                         else {
-                            guruView.onFailed("Data tidak ditemukan");
+                            guruView.onFailed("Data guru tidak ditemukan");
                         }
                     }
                 },

@@ -32,7 +32,7 @@ public class NilaiPresenter {
                             nilaiView.onSuccess(responNilai);
                         }
                         else {
-                            nilaiView.onFailed("Data tidak ditemukan");
+                            nilaiView.onFailed("Data nilai tidak ditemukan");
                         }
                     }
                 },

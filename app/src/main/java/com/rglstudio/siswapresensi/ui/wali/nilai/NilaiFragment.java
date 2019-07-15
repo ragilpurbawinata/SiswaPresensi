@@ -2,13 +2,14 @@ package com.rglstudio.siswapresensi.ui.wali.nilai;
 
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.rglstudio.siswapresensi.R;
 import com.rglstudio.siswapresensi.adapter.NilaiAdapter;
@@ -62,7 +63,8 @@ public class NilaiFragment extends Fragment implements NilaiView{
     private void initView() {
         pref = new MyPref(getContext());
         presenter = new NilaiPresenter(this);
-        rvNilai.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
+        adapter = new NilaiAdapter();
+        rvNilai.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
     }
 
     private void loadData() {
@@ -73,7 +75,7 @@ public class NilaiFragment extends Fragment implements NilaiView{
     @Override
     public void onSuccess(ResponNilai responNilai) {
         refreshLayout.setRefreshing(false);
-        adapter = new NilaiAdapter(responNilai.getData());
+        adapter.setList(responNilai.getData());
         rvNilai.setAdapter(adapter);
     }
 
