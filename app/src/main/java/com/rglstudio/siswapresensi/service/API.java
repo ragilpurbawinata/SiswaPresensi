@@ -18,5 +18,5 @@ public class API {
     public static String GET_GCM_ID = BASE_URL+"api/get-gcm-by-nis";
 
     public static String FCM_API = "https://fcm.googleapis.com/fcm/send";
-    public static String FCM_SERVER_KEY = "AAAAYsoZrOs:APA91bHIGqpvlx1hxkLU0bzXvtPn41OQnTmRW_-dqhnu3AHWBXjn9s3G0T-TYJctXUkpAz3MrZYzWeo_oN0D2CXOXuBcfGt9uRVSN_EuYDqA_GF3Z1xVFisbeqMI8l8Op0wlzc_Ha36d";
+    public static String FCM_SERVER_KEY = "AAAAlQaZusU:APA91bEEtMoxAwxIQZN885LKajplFGSdg5EDJrDymeEIbw_2Efc4RpUESA6OEmbUrM8ym-mbEBN2ZKbomobwix4gMbqF1oXrWuSacOZrrcmk77-xvFi-wnoBTJDBY4NrB44u6xsAuOAq";
 }
